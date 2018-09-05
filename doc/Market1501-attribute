@@ -1,0 +1,21 @@
+The 27 attributes are: 
+
+|           attribute 		 | representation in file | 			label			|
+| :----------------------------: | :--------------------: | :-----------------------------------------: |
+| gender    			 | 	gender 		  | male(1), female(2) 				|
+| hair length 			 | 	hair		  | short hair(1), long hair(2)   		|
+| sleeve length 		 | 	up 		  | long sleeve(1), short sleeve(2)		|
+| length of lower-body clothing  | 	down 		  | long lower body clothing(1), short(2)  	|
+| type of lower-body clothing	 | 	clothes		  | dress(1), pants(2)    			|
+| wearing hat			 | 	hat		  | no(1), yes(2) 				|
+| carrying backpack		 | 	backpack	  | no(1), yes(2) 				|
+| carrying bag			 | 	bag 		  | no(1), yes(2) 				|
+| carrying handbag		 | 	handbag 	  | no(1), yes(2) 				|
+| age				 | 	age 		  | young(1), teenager(2), adult(3), old(4) 	|
+
+
+| 8 color of upper-body clothing | upblack, upwhite, upred, uppurple, upyellow, upgray, upblue, upgreen 			   | no(1), yes(2) |
+| 9 color of lower-body clothing | downblack, downwhite, downpink, downpurple, downyellow, downgray, downblue, downgreen,downbrown | no(1), yes(2) |
+
+Note that the though there are 8 and 9 attributes for upper-body clothing and lower-body clothing, only one color is labeled as yes (2) for an identity.
+
