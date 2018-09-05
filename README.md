@@ -2,7 +2,7 @@
 A baseline model ( pytorch implementation ) for person attribute recognition task, training and testing on Market1501-attribute and DukeMTMC-reID-attribute dataset.
 
 ## Dataset
-You can get [Market1501-attribute](https://github.com/vana77/Market-1501_Attribute) and [DukeMTMC-reID-attribute](https://github.com/vana77/DukeMTMC-attribute) annotations from [here](https://github.com/vana77). Besides you need to download Market-1501 and DukeMTMC-reID dataset.
+You can get [Market1501-attribute](https://github.com/vana77/Market-1501_Attribute) and [DukeMTMC-reID-attribute](https://github.com/vana77/DukeMTMC-attribute) annotations from [here](https://github.com/vana77). Also you need to download Market-1501 and DukeMTMC-reID dataset.  
 Then, create a folder named 'attribute' under your dataset path, and put corresponding annotations into the folder.
 
 For example,<br>
