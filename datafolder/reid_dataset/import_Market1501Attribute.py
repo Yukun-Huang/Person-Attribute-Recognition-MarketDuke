@@ -90,6 +90,8 @@ def import_Market1501Attribute(dataset_dir):
             id_list_name = 'train_person_id'
             group_name = 'train_attribute'
         for attribute_id in range(len(f['market_attribute'][0][0][test_train][0][0])):
+            if isinstance(f['market_attribute'][0][0][test_train][0][0][attribute_id][0][0], np.ndarray):
+                continue
             for person_id in range(len(f['market_attribute'][0][0][test_train][0][0][attribute_id][0])):
                 id = locals()[id_list_name][person_id]
                 if id not in locals()[group_name]:

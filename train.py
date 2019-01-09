@@ -169,9 +169,9 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs):
                 # statistics
                 running_loss += label_loss.item()
                 running_corrects += torch.sum(preds == labels.data.byte()).item() / num_label
-                print('step : ({}/{})  |  loss : {:.4f}'.format(count*args.batch_size, dataset_sizes[phase], running_loss))
+                print('step : ({}/{})  |  loss : {:.4f}'.format(count*args.batch_size, dataset_sizes[phase], label_loss.item()))
 
-            epoch_loss = running_loss / dataset_sizes[phase]
+            epoch_loss = running_loss / len(dataloaders[phase])
             epoch_acc = running_corrects / dataset_sizes[phase]
 
             print('{} Loss: {:.4f} Acc: {:.4f}'.format(
