@@ -30,7 +30,7 @@ model_dict = {
 # Argument
 # --------
 parser = argparse.ArgumentParser(description='Training')
-parser.add_argument('--data-path', default='/home/xxx/reid/', type=str, help='path to the dataset')
+parser.add_argument('--data-path', default='/path/to/dataset', type=str, help='path to the dataset')
 parser.add_argument('--dataset', default='market', type=str, help='dataset')
 parser.add_argument('--model', default='resnet50', type=str, help='model')
 parser.add_argument('--batch-size', default=16, type=int, help='batch size')
