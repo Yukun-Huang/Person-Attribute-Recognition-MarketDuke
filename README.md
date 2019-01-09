@@ -25,3 +25,7 @@ average accuracy: **0.9024**
 
 DukeMTMC-reID gallery:  
 average accuracy: **0.8800**  
+
+
+## Update
+19-01-09: Fixed the error caused by an update of market and duke attribute dataset.
