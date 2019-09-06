@@ -32,7 +32,7 @@ python3  test.py   --data-path  ~/dataset  --dataset  [market | duke]  --model  
 
 ## Result
 
-We use binary classification settings (considered each attribute as an independent binary classification problem), and the classification threshold is 0.5.
+We use **binary classification** settings (considered each attribute as an independent binary classification problem), and the classification threshold is **0.5**.
 
 ***Note that some attributes may not have a positive (or negative) sample, so F1 score of these attributes will be zero.***
 
@@ -110,10 +110,10 @@ Average f1 score: 0.3226
 ```
 
 ## Update
-19-09-06: Updated **test.py**, added **F1 score** for evaluating.
+*19-09-06: Updated **test.py**, added **F1 score** for evaluating.*
 
-19-09-03: Added **inference.py**, thanks @ViswanathaReddyGajjala.
+*19-09-03: Added **inference.py**, thanks @ViswanathaReddyGajjala.*
 
-19-08-23: Released trained models.
+*19-08-23: Released trained models.*
 
-19-01-09: Fixed the error caused by an update of market and duke attribute dataset.
+*19-01-09: Fixed the error caused by an update of market and duke attribute dataset.*
