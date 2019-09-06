@@ -34,7 +34,7 @@ python3  test.py   --data-path  ~/dataset  --dataset  [market | duke]  --model  
 
 We use binary classification settings (considered each attribute as an independent binary classification problem), and the classification threshold is 0.5.
 
-Note that some attributes may not have a positive (or negative) sample, so F1 score of these attributes will be zero.
+***Note that some attributes may not have a positive (or negative) sample, so F1 score of these attributes will be zero.***
 
 ### Market-1501 gallery
 ```
