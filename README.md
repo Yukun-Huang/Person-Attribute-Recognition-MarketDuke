@@ -1,5 +1,5 @@
 # Person-Attribute-Recognition-MarketDuke
-A baseline model ( pytorch implementation ) for person attribute recognition task, training and testing on Market1501-attribute and DukeMTMC-reID-attribute dataset.
+A baseline model ( pytorch implementation ) for **person attribute recognition task**, training and testing on Market1501-attribute and DukeMTMC-reID-attribute dataset.
 
 
 ## Dataset
@@ -19,7 +19,9 @@ For example,<br>
 ```
 
 ## Model
-Trained model are provided. You may download it from [Google Drive](https://drive.google.com/drive/folders/1JTdjuEbxSLypnfUzVuuxLj1uSKAacfd0?usp=sharing) or [Baidu Drive](https://pan.baidu.com/s/1bByCxZp9bSs8YYZPbuK21A) (提取码：jpks). You may download it and move `checkpoints` folder to your project's root directory.
+Trained model are provided. You may download it from [Google Drive](https://drive.google.com/drive/folders/1JTdjuEbxSLypnfUzVuuxLj1uSKAacfd0?usp=sharing) or [Baidu Drive](https://pan.baidu.com/s/1bByCxZp9bSs8YYZPbuK21A) (提取码：jpks).
+
+You may download it and move `checkpoints` folder to your project's root directory.
 
 
 ## Usage
@@ -32,7 +34,7 @@ python3  test.py   --data-path  ~/dataset  --dataset  [market | duke]  --model  
 
 We use binary classification settings (considered each attribute as an independent binary classification problem), and the classification threshold is 0.5.
 
-Note that some attributes may not have a positive (or negative) sample, so F1 score of these attributes might be zero.
+Note that some attributes may not have a positive (or negative) sample, so F1 score of these attributes will be zero.
 
 ### Market-1501 gallery
 ```
