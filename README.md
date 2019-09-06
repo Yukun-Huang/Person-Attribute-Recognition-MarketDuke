@@ -22,9 +22,10 @@ Trained model are provided. You may download it from [Google Drive](https://driv
 
 
 ## Usage
-python3  train.py  --data-path  ~/dataset  --dataset  [market | duke]  --model  resnet50  
-python3  test.py  --data-path  ~/dataset  --dataset  [market | duke]  --model  resnet50  
-
+```
+python3  train.py  --data-path  ~/dataset  --dataset  [market | duke]  --model  resnet50
+python3  test.py   --data-path  ~/dataset  --dataset  [market | duke]  --model  resnet50  [--print-table]
+```
 
 ## Result (binary classification)
 Market-1501 gallery:  
@@ -35,6 +36,10 @@ average accuracy: **0.8800**
 
 
 ## Update
+19-09-06: Updated **test.py**, added **F1 score** for evaluating.
+
+19-09-03: Added **inference.py**, thanks @ViswanathaReddyGajjala.
+
 19-08-23: Released trained models.
 
 19-01-09: Fixed the error caused by an update of market and duke attribute dataset.
