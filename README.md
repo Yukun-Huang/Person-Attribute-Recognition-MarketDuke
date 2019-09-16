@@ -31,7 +31,6 @@ python3  train.py  --data-path  ~/dataset  --dataset  [market | duke]  --model  
 python3  test.py   --data-path  ~/dataset  --dataset  [market | duke]  --model  resnet50  [--print-table]
 
 python3  inference.py   test_sample/test_market.jpg  [--dataset  market]  [--model  resnet50]
-
 ```
 
 ## Result
