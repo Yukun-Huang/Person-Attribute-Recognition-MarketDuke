@@ -110,6 +110,8 @@ Average f1 score: 0.3226
 ```
 
 ## Update
+*19-09-16: Updated **inference.py**, fixed the error caused by missing data-transform.*
+
 *19-09-06: Updated **test.py**, added **F1 score** for evaluating.*
 
 *19-09-03: Added **inference.py**, thanks @ViswanathaReddyGajjala.*
