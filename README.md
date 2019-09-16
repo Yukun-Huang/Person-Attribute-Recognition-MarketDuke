@@ -27,7 +27,11 @@ You may download it and move `checkpoints` folder to your project's root directo
 ## Usage
 ```
 python3  train.py  --data-path  ~/dataset  --dataset  [market | duke]  --model  resnet50
+
 python3  test.py   --data-path  ~/dataset  --dataset  [market | duke]  --model  resnet50  [--print-table]
+
+python3  inference.py   test_sample/test_market.jpg  [--dataset  market]  [--model  resnet50]
+
 ```
 
 ## Result
@@ -107,6 +111,23 @@ Average f1 score: 0.4491
 +-----------+----------+-----------+--------+----------+
 Average accuracy: 0.8758
 Average f1 score: 0.3226
+```
+
+### Market-1501 inference
+```
+>> python inference.py test_sample/test_market.jpg
+age: teenager
+carrying backpack: no
+carrying bag: no
+carrying handbag: no
+type of lower-body clothing: dress
+length of lower-body clothing: short
+sleeve length: short sleeve
+hair length: long hair
+wearing hat: no
+gender: female
+color of upper-body clothing: white
+color of lower-body clothing: white
 ```
 
 ## Update
