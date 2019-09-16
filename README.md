@@ -112,9 +112,9 @@ Average accuracy: 0.8758
 Average f1 score: 0.3226
 ```
 
-### Market-1501 inference
+### Inference
 ```
->> python inference.py test_sample/test_market.jpg
+>> python inference.py test_sample/test_market.jpg --dataset market
 age: teenager
 carrying backpack: no
 carrying bag: no
@@ -127,6 +127,18 @@ wearing hat: no
 gender: female
 color of upper-body clothing: white
 color of lower-body clothing: white
+
+>> python inference.py test_sample/test_duke.jpg --dataset duke
+carrying backpack: no
+carrying bag: no
+carrying handbag: no
+wearing boots: no
+gender: male
+wearing hat: no
+color of shoes: dark
+length of upper-body clothing: short upper body clothing
+color of upper-body clothing: black
+color of lower-body clothing: blue
 ```
 
 ## Update
