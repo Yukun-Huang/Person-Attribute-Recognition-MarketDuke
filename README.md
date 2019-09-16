@@ -1,5 +1,5 @@
 # Person-Attribute-Recognition-MarketDuke
-A baseline model ( pytorch implementation ) for **person attribute recognition task**, training and testing on Market1501-attribute and DukeMTMC-reID-attribute dataset.
+A simple baseline implemented in PyTorch for **pedestrian attribute recognition** task, evaluating on Market-1501-attribute and DukeMTMC-reID-attribute dataset.
 
 
 ## Dataset
