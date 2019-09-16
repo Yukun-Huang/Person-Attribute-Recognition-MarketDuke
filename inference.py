@@ -1,34 +1,19 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Sep  3 13:14:47 2019
-
-@author: viswanatha
-"""
-
+import os
+import json
 import torch
-from net import *
-import cv2
-import numpy as np
 import argparse
-parser = argparse.ArgumentParser()
-    
-#parser.add_argument('model_path',help='Path to the trained model')
-parser.add_argument('image_path',help='Path to test image')
-#parser.add_argument('use_gpu', help='True if gpu is available')
-args = parser.parse_args()
-    
-def load_network(network):
-    #save_path = os.path.join(model_dir,'net_%s.pth'%args.which_epoch)
-    save_path = 'checkpoints/market/resnet50/net_last.pth'
-    network.load_state_dict(torch.load(save_path))
-    return network
+from PIL import Image
+from torchvision import transforms as T
+from net import *
 
 
-model_dict = torch.load('checkpoints/market/resnet50/net_last.pth')
-
-num_cls_dict = { 'market':30, 'duke':23 }
-num_ids_dict = { 'market':751, 'duke':702 }
+######################################################################
+# Settings
+# ---------
+dataset_dict = {
+    'market'  :  'Market-1501',
+    'duke'  :  'DukeMTMC-reID',
+}
 model_dict = {
     'resnet18'  :  ResNet18_nFC,
     'resnet34'  :  ResNet34_nFC,
@@ -36,32 +21,70 @@ model_dict = {
     'densenet'  :  DenseNet121_nFC,
     'resnet50_softmax'  :  ResNet50_nFC_softmax,
 }
+num_cls_dict = { 'market':30, 'duke':23 }
+num_ids_dict = { 'market':751, 'duke':702 }
 
-num_cls = num_cls_dict['market']
-model = model_dict['resnet50'](num_cls)
+transforms = T.Compose([
+    T.Resize(size=(288, 144)),
+    T.ToTensor(),
+    T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+])
 
+
+######################################################################
+# Argument
+# ---------
+parser = argparse.ArgumentParser()
+parser.add_argument('image_path', help='Path to test image')
+parser.add_argument('--dataset', default='market', type=str, help='dataset')
+parser.add_argument('--model', default='resnet50', type=str, help='model')
+args = parser.parse_args()
+
+
+######################################################################
+# Model and Data
+# ---------
+def load_network(network):
+    save_path = os.path.join('./checkpoints', args.dataset, args.model, 'net_last.pth')
+    network.load_state_dict(torch.load(save_path))
+    return network
+
+def load_image(path):
+    src = Image.open(path)
+    src = transforms(src)
+    src = src.unsqueeze(dim=0)
+    return src
+
+model = model_dict[args.model](num_cls_dict[args.dataset])
 model = load_network(model)
-
-img = cv2.imread(args.image_path)
-im = np.moveaxis(img, -1, 0)
-im = np.expand_dims(im, axis=0)
-
-labels = ["young", "teenager", "adult", "old",
-          "backpack", "bag", "handbag",    
-          "clothes", "down", "up", "hair",    
-          "hat",   "gender",  
-          "upblack","upwhite", 
-          "upred", "uppurple", "upyellow", "upgray", 
-          "upblue", "upgreen",
-          "downblack", "downwhite",
-          "downpink", "downpurple", 
-          "downyellow", "downgray", 
-          "downblue", "downgreen", "downbrown"]
-
-img1 = torch.Tensor(im)
 model.eval()
-outs = model.forward(img1)
-for index in range(30):
-    if outs[:,index]==1:
-        print (labels[index])
-            
+
+src = load_image(args.image_path)
+
+######################################################################
+# Inference
+# ---------
+class predict_decoder(object):
+
+    def __init__(self, dataset):
+        with open('./doc/label.json', 'r') as f:
+            self.label_list = json.load(f)[dataset]
+        with open('./doc/attribute.json', 'r') as f:
+            self.attribute_dict = json.load(f)[dataset]
+        self.dataset = dataset
+        self.num_label = len(self.label_list)
+
+    def decode(self, pred):
+        pred = pred.squeeze(dim=0)
+        for idx in range(self.num_label):
+            name, chooce = self.attribute_dict[self.label_list[idx]]
+            if chooce[pred[idx]]:
+                print('{}: {}'.format(name, chooce[pred[idx]]))
+
+
+out = model.forward(src)
+pred = torch.gt(out, torch.ones_like(out)/2 )  # threshold=0.5
+
+Dec = predict_decoder(args.dataset)
+Dec.decode(pred)
+
