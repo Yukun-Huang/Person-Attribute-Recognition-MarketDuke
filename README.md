@@ -151,3 +151,7 @@ color of lower-body clothing: blue
 *19-08-23: Released trained models.*
 
 *19-01-09: Fixed the error caused by an update of market and duke attribute dataset.*
+
+## Reference
+
+[1] *Lin Y, Zheng L, Zheng Z, et al. Improving person re-identification by attribute and identity learning[J]. Pattern Recognition, 2019.*
