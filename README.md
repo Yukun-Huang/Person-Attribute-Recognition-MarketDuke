@@ -154,4 +154,4 @@ color of lower-body clothing: blue
 
 ## Reference
 
-[1] *Lin Y, Zheng L, Zheng Z, et al. Improving person re-identification by attribute and identity learning[J]. Pattern Recognition, 2019.*
+*[1] Lin Y, Zheng L, Zheng Z, et al. Improving person re-identification by attribute and identity learning[J]. Pattern Recognition, 2019.*
