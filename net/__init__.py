@@ -1,14 +1,9 @@
-from .ResNet18_nFC import ResNet18_nFC
-from .ResNet34_nFC import ResNet34_nFC
-from .ResNet50_nFC import ResNet50_nFC
-from .DenseNet121_nFC import DenseNet121_nFC
-from .ResNet50_nFC_softmax import ResNet50_nFC_softmax
+from .models import Backbone_nFC, Backbone_nFC_Id
 
-__all__ = [
-    'ResNet50_nFC',
-    'DenseNet121_nFC',
-    'ResNet34_nFC',
-    'ResNet18_nFC',
-    'ResNet50_nFC_softmax',
-]
+
+def get_model(model_name, num_label, use_id=False, num_id=None):
+    if not use_id:
+        return Backbone_nFC(num_label, model_name)
+    else:
+        return Backbone_nFC_Id(num_label, num_id, model_name)
 

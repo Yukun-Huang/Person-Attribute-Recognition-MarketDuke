@@ -4,7 +4,7 @@ import torch
 import argparse
 from PIL import Image
 from torchvision import transforms as T
-from net import *
+from net import get_model
 
 
 ######################################################################
@@ -13,13 +13,6 @@ from net import *
 dataset_dict = {
     'market'  :  'Market-1501',
     'duke'  :  'DukeMTMC-reID',
-}
-model_dict = {
-    'resnet18'  :  ResNet18_nFC,
-    'resnet34'  :  ResNet34_nFC,
-    'resnet50'  :  ResNet50_nFC,
-    'densenet'  :  DenseNet121_nFC,
-    'resnet50_softmax'  :  ResNet50_nFC_softmax,
 }
 num_cls_dict = { 'market':30, 'duke':23 }
 num_ids_dict = { 'market':751, 'duke':702 }
@@ -37,16 +30,24 @@ transforms = T.Compose([
 parser = argparse.ArgumentParser()
 parser.add_argument('image_path', help='Path to test image')
 parser.add_argument('--dataset', default='market', type=str, help='dataset')
-parser.add_argument('--model', default='resnet50', type=str, help='model')
+parser.add_argument('--backbone', default='resnet50', type=str, help='model')
+parser.add_argument('--use-id', action='store_true', help='use identity loss')
 args = parser.parse_args()
+
+assert args.dataset in ['market', 'duke']
+assert args.backbone in ['resnet50', 'resnet34', 'resnet18', 'densenet121']
+
+model_name = '{}_nfc_softmax'.format(args.backbone) if args.use_id else '{}_nfc'.format(args.backbone)
+num_label, num_id = num_cls_dict[args.dataset], num_ids_dict[args.dataset]
 
 
 ######################################################################
 # Model and Data
 # ---------
 def load_network(network):
-    save_path = os.path.join('./checkpoints', args.dataset, args.model, 'net_last.pth')
+    save_path = os.path.join('./checkpoints', args.dataset, model_name, 'net_last.pth')
     network.load_state_dict(torch.load(save_path))
+    print('Resume model from {}'.format(save_path))
     return network
 
 def load_image(path):
@@ -55,7 +56,8 @@ def load_image(path):
     src = src.unsqueeze(dim=0)
     return src
 
-model = model_dict[args.model](num_cls_dict[args.dataset])
+
+model = get_model(model_name, num_label, use_id=args.use_id, num_id=num_id)
 model = load_network(model)
 model.eval()
 
@@ -82,7 +84,11 @@ class predict_decoder(object):
                 print('{}: {}'.format(name, chooce[pred[idx]]))
 
 
-out = model.forward(src)
+if not args.use_id:
+    out = model.forward(src)
+else:
+    out, _ = model.forward(src)
+
 pred = torch.gt(out, torch.ones_like(out)/2 )  # threshold=0.5
 
 Dec = predict_decoder(args.dataset)
