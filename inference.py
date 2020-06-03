@@ -37,7 +37,7 @@ args = parser.parse_args()
 assert args.dataset in ['market', 'duke']
 assert args.backbone in ['resnet50', 'resnet34', 'resnet18', 'densenet121']
 
-model_name = '{}_nfc_softmax'.format(args.backbone) if args.use_id else '{}_nfc'.format(args.backbone)
+model_name = '{}_nfc_id'.format(args.backbone) if args.use_id else '{}_nfc'.format(args.backbone)
 num_label, num_id = num_cls_dict[args.dataset], num_ids_dict[args.dataset]
 
 
