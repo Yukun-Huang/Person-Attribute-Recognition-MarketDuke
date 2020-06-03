@@ -40,7 +40,7 @@ assert args.dataset in ['market', 'duke']
 assert args.backbone in ['resnet50', 'resnet34', 'resnet18', 'densenet121']
 
 dataset_name = dataset_dict[args.dataset]
-model_name = '{}_nfc_softmax'.format(args.backbone) if args.use_id else '{}_nfc'.format(args.backbone)
+model_name = '{}_nfc_id'.format(args.backbone) if args.use_id else '{}_nfc'.format(args.backbone)
 data_dir = args.data_path
 model_dir = os.path.join('./checkpoints', args.dataset, model_name)
 result_dir = os.path.join('./result', args.dataset, model_name)
