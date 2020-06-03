@@ -37,7 +37,7 @@ python3  inference.py   test_sample/test_market.jpg  [--dataset  market]  [--mod
 
 We use **binary classification** settings (considered each attribute as an independent binary classification problem), and the classification threshold is **0.5**.
 
-***Note that some attributes may not have a positive (or negative) sample, so F1 score of these attributes will be zero.***
+***Note that the precision, recall and f1 score are denoted as '-' for some ill-defined cases.***
 
 ### Market-1501 gallery
 ```
@@ -142,7 +142,7 @@ color of lower-body clothing: blue
 ```
 
 ## Update
-*20-06-03: Added identity loss for joint optimization; Adjusted the learning rate for better performace.*
+*20-06-03: Added **identity loss** for joint optimization; Adjusted the learning rate for better performace.*
 
 *20-06-03: Updated **test.py**, settled the issue of ill-defined metrics.*
 
