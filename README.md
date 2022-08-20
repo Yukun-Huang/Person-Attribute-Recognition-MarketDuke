@@ -162,11 +162,19 @@ color of lower-body clothing: blue
 
 ## FAQ
 
-### Why attribute order in import_Market1501Attribute.py is different for train and test data?
+### 1. Why attribute order in import_Market1501Attribute.py is different for train and test data?
 
 The label order in import_Market1501Attribute.py is consistent with the attribute order of the dataset.
 
 You can load market_attribute.mat in MATLAB and print "market_attribute.train" or "market_attribute.test" to obtain these orders.
+
+### 2. Why predictions in the Market-1501 dataset have 30 attributes instead of 27?
+
+This repo consider attribute prediction as multiple binary classification, but some attribute have more than two categories.
+
+For example, attribute 'age' in Market-1501 has four categories: young(1), teenager(2), adult(3), old(4). So it can be split into four attributes: 'young', 'teenager', 'adult' and 'old'.
+
+That's why preds of Market-1501 has 30 attributes.
 
 ## Reference
 
