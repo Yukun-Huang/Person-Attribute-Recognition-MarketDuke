@@ -160,6 +160,14 @@ color of lower-body clothing: blue
 
 *19-01-09: Fixed the error caused by an update of market and duke attribute dataset.*
 
+## FAQ
+
+### Why attribute order in import_Market1501Attribute.py is different for train and test data?
+
+The label order in import_Market1501Attribute.py is consistent with the attribute order of the dataset.
+
+You can load market_attribute.mat in MATLAB and print "market_attribute.train" or "market_attribute.test" to obtain these orders.
+
 ## Reference
 
 *[1] Lin Y, Zheng L, Zheng Z, et al. Improving person re-identification by attribute and identity learning[J]. Pattern Recognition, 2019.*
